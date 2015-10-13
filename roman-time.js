@@ -11,7 +11,7 @@ var toRoman = {
                 romanArray.push('N');
                 return romanArray.join('');
                 break;
-            case 14:
+            case (number >= 10):
                 return this.tens(number);
                 break;
             default:
