@@ -5,59 +5,67 @@ var toRoman = {
 
     analyze: function (number) {
         romanArray = [];
+        number = Number(number);
         switch (number) {
-        case '0':
-            romanArray.push('N');
-            return romanArray.join('');
-        }if (number >= 10) {
-            return this.tens(number);
-        } else {
-            return this.units(number);
+            case 0:
+                romanArray.push('N');
+                return romanArray.join('');
+                break;
+            case 14:
+                return this.tens(number);
+                break;
+            default:
+                return this.units(number);
         }
     },
 
     tens: function (number) {
         var remainder = number % 10;
         var tens = Math.floor(number / 10);
-        switch (number) {
-            case '4':
-              romanArray.push('XL');
-            case '9':
-              romanArray.push('XC');
-        }if (tens >= 5 && tens < 9) {
-            romanArray.push('L');
-            for (var i = 0; i < (tens % 5); i++) {
-                romanArray.push('X');
-            }
-        } else if (tens > 0 && tens < 4) {
-            for (var e = 0; e < tens; e++) {
-                romanArray.push('X');
-            }
+        switch (tens) {
+            case 4:
+                romanArray.push('XL');
+                break;
+            case 9:
+                romanArray.push('XC');
+                break;
+            case (tens >= 5 && tens < 9):
+                romanArray.push('L');
+                for (var i = 0; i < (tens % 5); i++) {
+                    romanArray.push('X');
+                }
+                break;
+            case (tens > 0 && tens < 4):
+                for (var e = 0; e < tens; e++) {
+                    romanArray.push('X');
+                }
         }
         return this.units(remainder);
     },
 
-    units: function (number) {
+units: function (number) {
         switch (number) {
-            case '4':
-              romanArray.push('IV');
-            case '9':
-              romanArray.push('IX');
-        }
-        if (number >= 5 && number < 9) {
-            romanArray.push('V');
-            var remainder = number % 5;
-            for (var i = 0; i < remainder; i++) {
-                romanArray.push('I');
-            }
-        } else if (number > 0 && number < 4) {
-            for (var e = 0; e < number; e++) {
-                romanArray.push('I');
-            }
+            case 4:
+                romanArray.push('IV');
+                break;
+            case 9:
+                romanArray.push('IX');
+                break;
+            case (number >= 5 && number < 9):
+                romanArray.push('V');
+                var remainder = number % 5;
+                for (var i = 0; i < remainder; i++) {
+                    romanArray.push('I');
+                };
+                break;
+            case (number > 0 && number < 4):
+                for (var e = 0; e < number; e++) {
+                    romanArray.push('I');
+                }
         }
         return romanArray.join('');
     }
-};
+    };
 
 function swapChar(rNumber) {
     var art = new Array();
