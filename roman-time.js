@@ -5,10 +5,11 @@ var toRoman = {
 
     analyze: function (number) {
         romanArray = [];
-        if (number == 0) {
-            romanArray.push('N')
+        switch (number) {
+        case '0':
+            romanArray.push('N');
             return romanArray.join('');
-        } else if (number >= 10) {
+        }if (number >= 10) {
             return this.tens(number);
         } else {
             return this.units(number);
@@ -18,11 +19,12 @@ var toRoman = {
     tens: function (number) {
         var remainder = number % 10;
         var tens = Math.floor(number / 10);
-        if (tens == 4) {
-            romanArray.push('XL');
-        } else if (tens == 9) {
-            romanArray.push('XC');
-        } else if (tens >= 5 && tens < 9) {
+        switch (number) {
+            case '4':
+              romanArray.push('XL');
+            case '9':
+              romanArray.push('XC');
+        }if (tens >= 5 && tens < 9) {
             romanArray.push('L');
             for (var i = 0; i < (tens % 5); i++) {
                 romanArray.push('X');
@@ -31,19 +33,18 @@ var toRoman = {
             for (var e = 0; e < tens; e++) {
                 romanArray.push('X');
             }
-        } else {
-
         }
         return this.units(remainder);
     },
 
     units: function (number) {
-
-        if (number == 4) {
-            romanArray.push('IV');
-        } else if (number == 9) {
-            romanArray.push('IX');
-        } else if (number >= 5 && number < 9) {
+        switch (number) {
+            case '4':
+              romanArray.push('IV');
+            case '9':
+              romanArray.push('IX');
+        }
+        if (number >= 5 && number < 9) {
             romanArray.push('V');
             var remainder = number % 5;
             for (var i = 0; i < remainder; i++) {
@@ -53,8 +54,6 @@ var toRoman = {
             for (var e = 0; e < number; e++) {
                 romanArray.push('I');
             }
-        } else {
-
         }
         return romanArray.join('');
     }
